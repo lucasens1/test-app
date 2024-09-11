@@ -39,3 +39,4 @@ class Board {
         $stmt->execute([$id]);
     }
 }
+

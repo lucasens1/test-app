@@ -1,11 +1,10 @@
 <?php
-
 class Database {
     private $pdo;
     // Costruttore che usa la configurazione da config.php
     public function __construct($config) 
     {
-        // DSN per Data Source Name
+        // DSN (Data Source Name)
         $dsn = 'mysql:host=' . $config['db_host'] . ';dbname=' . $config['db_name'];
         try{
             // PDO per connettersi al DB -> PHP Data Objects, interfaccia per accedere ai DB

@@ -1,5 +1,4 @@
 <?php
-
 class User{
     private $pdo;
 
@@ -10,7 +9,7 @@ class User{
 
     public function createUser($username, $email, $password){
         // Preparo la query
-        $stmt = $this->pdo->prepare("INSERT INTO user (username, email, password_hash) VALUES (?,?,?)");
+        $stmt = $this->pdo->prepare("INSERT INTO users (username, email, password_hash) VALUES (?,?,?)");
         // Esegue la query
         $stmt->execute([$username, $email, password_hash($password, PASSWORD_BCRYPT)]);
     }

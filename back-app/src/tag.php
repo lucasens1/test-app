@@ -1,5 +1,4 @@
 <?php
-
 class Tag {
     private $pdo;
 
