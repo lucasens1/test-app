@@ -1,30 +1,43 @@
 <?php
+session_start();
+
 include_once '../src/database.php';
 include_once '../src/board.php';
 
 $config = include_once '../config/config.php';
 
 try {
+    // Verifica che l'utente sia autenticato
+    if (!isset($_SESSION['user_id'])) {
+        header('Content-Type: application/json', true, 401);
+        echo json_encode(['error' => 'Unauthorized']);
+        exit();
+    }
+
     $db = new Database($config);
     $pdo = $db->getConnection();
     $board = new Board($pdo);
+    $userId = $_SESSION['user_id'];  // L'utente loggato
 
-    // Richieste HTTP
+    // Gestione delle richieste HTTP
     $uri = $_SERVER['REQUEST_URI'];
     $method = $_SERVER['REQUEST_METHOD'];
 
-    // POST, GET, PUT, DELETE
     switch ($method) {
         case 'POST':
             $data = json_decode(file_get_contents('php://input'), true);
-            $board->createBoard($data['name'], $data['description']);
-            header('Content-Type: application/json');
-            echo json_encode(['status' => 'Board created']);
+            if (isset($data['name'], $data['description'])) {
+                $board->createBoard($data['name'], $data['description'], $userId); // Assicurati che $userId sia correttamente definito
+                header('Content-Type: application/json');
+                echo json_encode(['status' => 'Board created']);
+            } else {
+                header('Content-Type: application/json', true, 400);
+                echo json_encode(['error' => 'Invalid data']);
+            }
             break;
 
         case 'GET':
             if (isset($_GET['user_id'])) {
-                $userId = $_GET['user_id'];
                 $boards = $board->getBoardsForUser($userId);
                 header('Content-Type: application/json');
                 echo json_encode($boards);
@@ -37,9 +50,15 @@ try {
         case 'PUT':
             parse_str(file_get_contents("php://input"), $data);
             if (isset($data['id'], $data['name'], $data['description'])) {
-                $board->updateBoard($data['id'], $data['name'], $data['description']);
-                header('Content-Type: application/json');
-                echo json_encode(['status' => 'Board updated']);
+                $boardOwner = $board->getBoardOwner($data['id']);
+                if ($boardOwner === $userId) {
+                    $board->updateBoard($data['id'], $data['name'], $data['description']);
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'Board updated']);
+                } else {
+                    header('Content-Type: application/json', true, 403);
+                    echo json_encode(['error' => 'Unauthorized action']);
+                }
             } else {
                 header('Content-Type: application/json', true, 400);
                 echo json_encode(['error' => 'Invalid data']);
@@ -49,9 +68,15 @@ try {
         case 'DELETE':
             parse_str(file_get_contents("php://input"), $data);
             if (isset($data['id'])) {
-                $board->deleteBoard($data['id']);
-                header('Content-Type: application/json');
-                echo json_encode(['status' => 'Board deleted']);
+                $boardOwner = $board->getBoardOwner($data['id']);
+                if ($boardOwner === $userId) {
+                    $board->deleteBoard($data['id']);
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'Board deleted']);
+                } else {
+                    header('Content-Type: application/json', true, 403);
+                    echo json_encode(['error' => 'Unauthorized action']);
+                }
             } else {
                 header('Content-Type: application/json', true, 400);
                 echo json_encode(['error' => 'ID is required']);
