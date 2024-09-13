@@ -27,7 +27,7 @@ try {
         case 'POST':
             $data = json_decode(file_get_contents('php://input'), true);
             if (isset($data['name'], $data['description'])) {
-                $board->createBoard($data['name'], $data['description'], $userId); // Assicurati che $userId sia correttamente definito
+                $board->createBoard($data['name'], $data['description'], $userId);
                 header('Content-Type: application/json');
                 echo json_encode(['status' => 'Board created']);
             } else {

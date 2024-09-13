@@ -3,6 +3,7 @@ session_start();
 
 include_once '../src/database.php';
 include_once '../src/board.php';
+include_once '../src/user_board.php';
 
 $config = include_once '../config/config.php';
 
@@ -17,6 +18,7 @@ try {
     $db = new Database($config);
     $pdo = $db->getConnection();
     $board = new Board($pdo);
+    $userBoard = new UserBoard($pdo); // Instanza della classe UserBoard
     $userId = $_SESSION['user_id'];  // L'utente loggato
 
     // Gestione delle richieste HTTP
@@ -46,6 +48,26 @@ try {
             }
             break;
 
+        case 'DELETE':
+            $data = json_decode(file_get_contents('php://input'), true);
+            if (isset($data['board_id'], $data['user_id'])) {
+                // Verifica se l'utente loggato è il proprietario della board
+                $boardOwner = $board->getBoardOwner($data['board_id']);
+                if ($boardOwner === $userId) {
+                    // Rimuove l'utente dalla board
+                    $userBoard->removeUserFromBoard($data['user_id'], $data['board_id']);
+                    header('Content-Type: application/json');
+                    echo json_encode(['status' => 'Collaborator removed']);
+                } else {
+                    header('Content-Type: application/json', true, 403);
+                    echo json_encode(['error' => 'Unauthorized action']);
+                }
+            } else {
+                header('Content-Type: application/json', true, 400);
+                echo json_encode(['error' => 'Invalid data']);
+            }
+            break;
+
         default:
             header('Content-Type: application/json', true, 405);
             echo json_encode(['error' => 'Method not allowed']);
@@ -54,4 +76,3 @@ try {
 } catch (PDOException $e) {
     echo 'Errore: ' . $e->getMessage();
 }
-?>
