@@ -1,30 +1,26 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+Todo's App
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--bg-1);">
+</div>
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--bg-2);">
+</div>
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--actions-1);">
+</div>
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--actions-2);">
+</div>
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--details-a-1);">
+</div>
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--details-a-2);">
+</div>
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--details-bg-1);">
+</div>
+<div class="box-1" style="width: 50px; height: 50px; background-color: var(--details-bg-2);">
+</div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
