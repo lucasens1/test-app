@@ -1,10 +1,17 @@
 <script>
-
+import Navbar from './components/partials/Navbar.vue';
+import FooterC from './components/partials/FooterC.vue';
+export default {
+    components : { Navbar, FooterC}
+}
 </script>
 
 <template>
-Todo's App
-<div class="box-1" style="width: 50px; height: 50px; background-color: var(--bg-1);">
+    
+    <Navbar />
+    <router-view></router-view>
+    <FooterC />
+<!-- <div class="box-1" style="width: 50px; height: 50px; background-color: var(--bg-1);">
 </div>
 <div class="box-1" style="width: 50px; height: 50px; background-color: var(--bg-2);">
 </div>
@@ -19,7 +26,7 @@ Todo's App
 <div class="box-1" style="width: 50px; height: 50px; background-color: var(--details-bg-1);">
 </div>
 <div class="box-1" style="width: 50px; height: 50px; background-color: var(--details-bg-2);">
-</div>
+</div> -->
 </template>
 
 <style scoped>
