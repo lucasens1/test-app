@@ -3,17 +3,27 @@ export default {
   data() {
     return {
       items: [
-        { name: "Elemento 1", checked: false },
-        { name: "Elemento 2", checked: false },
-        { name: "Elemento 3", checked: false },
-      ]
+        { name: "Compra quello che manca per il sushi 🍣 ", checked: false },
+        { name: "Appuntamento dal parrucchiere alle 14:30! ", checked: false },
+        { name: "Connettiti alle 20 su Discord 👾", checked: false },
+      ],
+      completedQuests: [],
     };
   },
+  watch: {
+    items: {
+      handler() {
+        // Filtra gli elementi selezionati
+        this.completedQuests = this.items.filter((item) => item.checked);
+      },
+      deep: true, // Monitora i cambiamenti interni dell'array items
+    },
+  },
   computed: {
-    selectedItems() {
-      return this.items.filter(item => item.checked);
-    }
-  }
+    allCompleted() {
+      return this.completedQuests.length === this.items.length;
+    },
+  },
 };
 </script>
 <template>
@@ -24,22 +34,32 @@ export default {
 
   <section class="demo-section">
     <div>
-      <h2>Seleziona elementi dalla lista:</h2>
+      <h4>I tuoi impegni di oggi : &#127880;</h4>
       <ul>
-        <li v-for="(item, index) in items" :key="index">
+        <li v-for="(item, index) in items" :key="index" class="ms_p-2">
           <label>
             <input type="checkbox" v-model="item.checked" />
-            {{ item.name }}
+            <span :class="item.checked ? 'ms_done' : ''" class="ms_ml-1">{{
+              item.name
+            }}</span>
           </label>
         </li>
       </ul>
-
-      <h3>Elementi selezionati:</h3>
-      <ul>
-        <li v-for="(item, index) in selectedItems" :key="index">
-          {{ item.name }}
-        </li>
-      </ul>
+      <div v-if="completedQuests.length">
+        <h4 class="ms_mt-1">Vediamo i tuoi progessi! &#128204; ({{ completedQuests.length }}/{{ items.length }})</h4>
+        <ul>
+          <li
+            v-for="(item, index) in completedQuests"
+            :key="index"
+            class="ms_p-2"
+          >
+            {{ item.name }}
+          </li>
+        </ul>
+        <div class="ms_txt-cnt ms_congratulations" v-if="allCompleted">
+          <strong>Complimenti hai completato tutto per oggi! &#129351; 🎉</strong>
+        </div>
+      </div>
     </div>
   </section>
 </template>

@@ -38,6 +38,10 @@ a {
   margin-top : 24px;
 }
 
+.ms_ml-1{
+  margin-left: 8px;
+}
+
 .ms_align-items-center{
   align-items: center;
 }
@@ -54,23 +58,37 @@ a {
   text-align: center;
 }
 
+.ms_done{
+  font-style: italic;
+  text-decoration: line-through;
+}
+
 /* Navbar */
 .ms_navbar{
   min-height: 70px;
-  background-color: var(--actions-2);
+  background-color: var(--details-a-1);
   color: white;
 }
 
+/* Demo-section */
 .demo-section{
   width: 85%;
+  border-radius: 12px;
   margin: 32px auto;
   padding: 20px;
-  background-color: var(--details-bg-2);
+  background-color: var(--details-bg-1);
+}
+
+.ms_congratulations{
+  background-color: var(--details-a-1);
+  padding: 8px;
+  color: white;
+  border-radius: 12px;
 }
 
 /* Body */
 body {
-  background-color: var(--bg-2);
+  background-color: var(--bg-1);
 }
 
 ul{
