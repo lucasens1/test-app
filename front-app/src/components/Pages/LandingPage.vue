@@ -30,6 +30,7 @@ export default {
   <div class="ms_p-2 ms_color-w ms_txt-cnt ms_mt-1">
     <h2>Benvenuto in Todo's App &#128640;</h2>
     <small>Da oggi tracciare gli impegni sarà molto più facile!</small>
+    <h4 class="ms_mt-1">Qui un assaggio di ciò che puoi fare!</h4>
   </div>
 
   <section class="demo-section">
@@ -46,21 +47,31 @@ export default {
         </li>
       </ul>
       <div v-if="completedQuests.length">
-        <h4 class="ms_mt-1">Vediamo i tuoi progessi! &#128204; ({{ completedQuests.length }}/{{ items.length }})</h4>
+        <h4 class="ms_mt-1">
+          Vediamo i tuoi progessi! &#128204; ({{ completedQuests.length }}/{{
+            items.length
+          }})
+        </h4>
         <ul>
           <li
             v-for="(item, index) in completedQuests"
             :key="index"
             class="ms_p-2"
           >
-            {{ item.name }}
+            <small>{{ item.name }}</small>
           </li>
         </ul>
         <div class="ms_txt-cnt ms_congratulations" v-if="allCompleted">
-          <strong>Complimenti hai completato tutto per oggi! &#129351; 🎉</strong>
+          <strong
+            >Complimenti hai completato tutto per oggi! &#129351; 🎉</strong
+          >
         </div>
       </div>
     </div>
   </section>
+  <div class="ms_txt-cnt ms_bg-d ms_p-2 ms_color-w ms_register-sec">
+    <span>Registrati e organizzati anche tu al meglio!</span>
+    <p class="ms_p-2 ms_my-1 ms_register"><router-link to="Register">Entra ora!</router-link></p>
+  </div>
 </template>
 <style></style>

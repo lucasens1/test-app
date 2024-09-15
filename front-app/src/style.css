@@ -42,6 +42,10 @@ a {
   margin-left: 8px;
 }
 
+.ms_my-1{
+  margin: 12px;
+}
+
 .ms_align-items-center{
   align-items: center;
 }
@@ -50,8 +54,16 @@ a {
   justify-content: center;
 }
 
+.ms_j-s-a{
+  justify-content: space-around;
+}
+
 .ms_color-w{
   color: white;
+}
+
+.ms_bg-d{
+  background-color: var(--details-a-1);
 }
 
 .ms_txt-cnt{
@@ -68,6 +80,7 @@ a {
   min-height: 70px;
   background-color: var(--details-a-1);
   color: white;
+  font-weight: 600;
 }
 
 /* Demo-section */
@@ -84,6 +97,23 @@ a {
   padding: 8px;
   color: white;
   border-radius: 12px;
+}
+
+.ms_register{
+  background-color: var(--bg-1);
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+p.ms_register:hover{
+  background-color: var(--details-bg-1);
+  color: black;
+  transition: 0.7s;
 }
 
 /* Body */
