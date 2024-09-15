@@ -2,12 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import UserPage from './src/components/Pages/User.vue';
 import Board from './src/components/Pages/Board.vue';
+import Home from './src/components/Pages/LandingPage.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: UserPage
+    component: Home
   },
   {
     path: '/User',
