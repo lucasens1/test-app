@@ -14,6 +14,11 @@ const routes = [
     path: '/User',
     name: 'User',
     component: UserPage
+  },
+  {
+    path: '/Board',
+    name: 'Board',
+    component: Board
   }
 ];
 

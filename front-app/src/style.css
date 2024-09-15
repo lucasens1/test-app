@@ -34,12 +34,45 @@ a {
   padding: 8px;
 }
 
+.ms_mt-1{
+  margin-top : 24px;
+}
+
 .ms_align-items-center{
   align-items: center;
+}
+
+.ms_justify-content-center{
+  justify-content: center;
+}
+
+.ms_color-w{
+  color: white;
+}
+
+.ms_txt-cnt{
+  text-align: center;
 }
 
 /* Navbar */
 .ms_navbar{
   min-height: 70px;
   background-color: var(--actions-2);
+  color: white;
+}
+
+.demo-section{
+  width: 85%;
+  margin: 32px auto;
+  padding: 20px;
+  background-color: var(--details-bg-2);
+}
+
+/* Body */
+body {
+  background-color: var(--bg-2);
+}
+
+ul{
+  list-style-type: none;
 }
