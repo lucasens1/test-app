@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-
+include_once '../src/cors.php';
 include_once '../src/database.php';
 include_once '../src/todolist.php';
 

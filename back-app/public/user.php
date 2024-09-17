@@ -1,4 +1,5 @@
 <?php
+include_once '../src/cors.php';
 require_once '../src/database.php';
 require_once '../src/user.php';
 
@@ -10,18 +11,23 @@ try {
     $user = new User($pdo);
 
     $method = $_SERVER['REQUEST_METHOD'];
+    header('Content-Type: application/json'); 
 
     switch ($method) {
         case 'POST':
             $data = json_decode(file_get_contents('php://input'), true);
 
-            if (isset($data['username'], $data['email'], $data['password'])) {
-                $user->createUser($data['username'], $data['email'], $data['password']);
-                header('Content-Type: application/json');
-                echo json_encode(['status' => 'User created']);
+            if (json_last_error() === JSON_ERROR_NONE) {
+                if (isset($data['username'], $data['email'], $data['password'])) {
+                    $user->createUser($data['username'], $data['email'], $data['password']);
+                    echo json_encode(['status' => 'User created']);
+                } else {
+                    http_response_code(400);
+                    echo json_encode(['error' => 'Invalid data']);
+                }
             } else {
-                header('Content-Type: application/json', true, 400);
-                echo json_encode(['error' => 'Invalid data']);
+                http_response_code(400);
+                echo json_encode(['error' => 'Invalid JSON']);
             }
             break;
 

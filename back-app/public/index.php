@@ -4,6 +4,7 @@ require_once '../src/board.php';
 require_once '../src/user.php';
 require_once '../src/tag.php';
 require_once '../src/todolist.php';
+include_once '../src/cors.php';
 // Config
 $config = require '../config/config.php';
 try {

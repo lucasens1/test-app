@@ -1,4 +1,5 @@
 <?php
+include_once '../src/cors.php';
 include_once '../src/database.php';
 $config = include_once '../config/config.php';
 

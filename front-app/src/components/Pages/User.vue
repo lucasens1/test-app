@@ -1,3 +1,3 @@
 <script></script>
-<template>User</template>
+<template>User {{ localStorage.username }}</template>
 <style></style>

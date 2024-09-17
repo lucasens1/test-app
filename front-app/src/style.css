@@ -10,10 +10,19 @@
   --details-bg-2 : #FEF4F4;
 }
 
+/* General Formatting */
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-1);
+}
+
+ul{
+  list-style-type: none;
 }
 
 a {
@@ -26,24 +35,9 @@ a {
   gap: 12px;
 }
 
+/* Display Flex Formatting */
 .ms_d-flex{
   display: flex;
-}
-
-.ms_p-2 {
-  padding: 8px;
-}
-
-.ms_mt-1{
-  margin-top : 24px;
-}
-
-.ms_ml-1{
-  margin-left: 8px;
-}
-
-.ms_my-1{
-  margin: 12px;
 }
 
 .ms_align-items-center{
@@ -58,6 +52,25 @@ a {
   justify-content: space-around;
 }
 
+/* Padding */
+.ms_p-2 {
+  padding: 8px;
+}
+
+/* Margin */
+.ms_mt-1{
+  margin-top : 24px;
+}
+
+.ms_ml-1{
+  margin-left: 8px;
+}
+
+.ms_my-1{
+  margin: 12px;
+}
+
+/* Color Formatting */
 .ms_color-w{
   color: white;
 }
@@ -66,10 +79,12 @@ a {
   background-color: var(--details-a-1);
 }
 
+/* Text Formatting */
 .ms_txt-cnt{
   text-align: center;
 }
 
+/* Checklist */
 .ms_done{
   font-style: italic;
   text-decoration: line-through;
@@ -115,12 +130,101 @@ p.ms_register:hover{
   color: black;
   transition: 0.7s;
 }
+/* Demo-section Landing Page */
 
-/* Body */
-body {
-  background-color: var(--bg-1);
+.reglog-container{
+  width: 80%;
+  margin: 24px auto;
+  background-color: var(--details-bg-1);
+  border-radius: 12px;
 }
 
-ul{
-  list-style-type: none;
+.reglog{
+  padding: 24px;
 }
+
+.reglog-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* Login Card Form */
+.reglog-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reglog-form .form-item {
+  position: relative;
+}
+
+.reglog-form .form-item .form-item-icon {
+  position: absolute;
+  top: .82rem;
+  left: 1.4rem;
+  font-size: 1.1rem;
+  opacity: .2;
+}
+
+.reglog-form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.reglog-form .form-item-other {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(1rem * .8);
+  margin-bottom: .5rem;
+}
+
+/* Login Card Form Elements */
+.reglog input[type="text"],
+.reglog input[type="password"],
+.reglog input[type="email"] {
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, .3);
+    padding: 1rem 1.5rem;
+    border-radius: 100px;
+    width: 100%;
+    transition: background .7s;
+    transition: 0.7s;
+}
+
+.reglog input:focus {
+    background: var(--bg-1);
+    transition: 0.7s;
+    color: white;
+}
+
+.reglog input:focus::placeholder{
+    color: transparent;
+    transition: all 0.7s;
+}
+
+.reglog input[type="checkbox"] {
+    width: 100%;
+    height: 24px;
+    accent-color: black;
+}
+
+.reglog button {
+    background: black;
+    color: white;
+    padding: 1rem;
+    border-radius: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background .5s;
+}
+
+.reglog button:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+}
+
